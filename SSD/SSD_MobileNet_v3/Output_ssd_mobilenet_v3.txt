@@ -1,0 +1,652 @@
+Loaded 10326 train images
+
+Model Architecture Summary:
+Input shape: torch.Size([1, 3, 300, 300])
+
+MobileNetV3 Backbone:
+Sequential(
+  (0): Conv2dNormActivation(
+    (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+    (2): Hardswish()
+  )
+  (1): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=16, bias=False)
+        (1): BatchNorm2d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(16, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (2): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(16, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+        (1): BatchNorm2d(64, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (2): Conv2dNormActivation(
+        (0): Conv2d(64, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (3): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(24, 72, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(72, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(72, 72, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=72, bias=False)
+        (1): BatchNorm2d(72, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (2): Conv2dNormActivation(
+        (0): Conv2d(72, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(24, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (4): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(24, 72, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(72, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(72, 72, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), groups=72, bias=False)
+        (1): BatchNorm2d(72, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(72, 24, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(24, 72, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(72, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(40, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (5): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(40, 120, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(120, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(120, 120, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=120, bias=False)
+        (1): BatchNorm2d(120, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(120, 32, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(32, 120, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(120, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(40, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (6): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(40, 120, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(120, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(120, 120, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=120, bias=False)
+        (1): BatchNorm2d(120, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(120, 32, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(32, 120, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(120, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(40, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (7): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(40, 240, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(240, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(240, 240, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=240, bias=False)
+        (1): BatchNorm2d(240, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): Conv2dNormActivation(
+        (0): Conv2d(240, 80, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(80, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (8): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(80, 200, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(200, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(200, 200, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=200, bias=False)
+        (1): BatchNorm2d(200, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): Conv2dNormActivation(
+        (0): Conv2d(200, 80, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(80, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (9): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(80, 184, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(184, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(184, 184, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=184, bias=False)
+        (1): BatchNorm2d(184, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): Conv2dNormActivation(
+        (0): Conv2d(184, 80, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(80, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (10): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(80, 184, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(184, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(184, 184, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=184, bias=False)
+        (1): BatchNorm2d(184, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): Conv2dNormActivation(
+        (0): Conv2d(184, 80, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(80, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (11): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(80, 480, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(480, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(480, 480, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=480, bias=False)
+        (1): BatchNorm2d(480, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(480, 120, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(120, 480, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(480, 112, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(112, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (12): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(112, 672, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(672, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(672, 672, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=672, bias=False)
+        (1): BatchNorm2d(672, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(672, 168, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(168, 672, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(672, 112, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(112, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (13): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(112, 672, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(672, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(672, 672, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), groups=672, bias=False)
+        (1): BatchNorm2d(672, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(672, 168, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(168, 672, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(672, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(160, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (14): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(160, 960, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(960, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(960, 960, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=960, bias=False)
+        (1): BatchNorm2d(960, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(960, 240, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(240, 960, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(960, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(160, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (15): InvertedResidual(
+    (block): Sequential(
+      (0): Conv2dNormActivation(
+        (0): Conv2d(160, 960, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(960, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (1): Conv2dNormActivation(
+        (0): Conv2d(960, 960, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=960, bias=False)
+        (1): BatchNorm2d(960, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+        (2): Hardswish()
+      )
+      (2): SqueezeExcitation(
+        (avgpool): AdaptiveAvgPool2d(output_size=1)
+        (fc1): Conv2d(960, 240, kernel_size=(1, 1), stride=(1, 1))
+        (fc2): Conv2d(240, 960, kernel_size=(1, 1), stride=(1, 1))
+        (activation): ReLU()
+        (scale_activation): Hardsigmoid()
+      )
+      (3): Conv2dNormActivation(
+        (0): Conv2d(960, 160, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (1): BatchNorm2d(160, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+      )
+    )
+  )
+  (16): Conv2dNormActivation(
+    (0): Conv2d(160, 960, kernel_size=(1, 1), stride=(1, 1), bias=False)
+    (1): BatchNorm2d(960, eps=0.001, momentum=0.01, affine=True, track_running_stats=True)
+    (2): Hardswish()
+  )
+)
+
+Additional Layers:
+Extra Layer 1:
+Sequential(
+  (0): Conv2d(960, 512, kernel_size=(1, 1), stride=(1, 1))
+  (1): ReLU(inplace=True)
+  (2): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+  (3): ReLU(inplace=True)
+)
+Extra Layer 2:
+Sequential(
+  (0): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+  (1): ReLU(inplace=True)
+  (2): Conv2d(256, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+  (3): ReLU(inplace=True)
+)
+
+Prediction Heads:
+Classification Heads: ModuleList(
+  (0): Conv2d(24, 112, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (1): Conv2d(40, 168, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (2): Conv2d(160, 168, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (3): Conv2d(960, 168, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (4): Conv2d(512, 112, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (5): Conv2d(256, 112, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+)
+Bounding Box Heads: ModuleList(
+  (0): Conv2d(24, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (1): Conv2d(40, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (2): Conv2d(160, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (3): Conv2d(960, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (4): Conv2d(512, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+  (5): Conv2d(256, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+)
+
+Total Parameters: 9,463,048
+Trainable Parameters: 9,463,048
+
+Feature Map Sizes:
+Input size: torch.Size([1, 3, 300, 300])
+Layer 3 output: torch.Size([1, 24, 75, 75])
+Layer 6 output: torch.Size([1, 40, 38, 38])
+Layer 13 output: torch.Size([1, 160, 10, 10])
+Final features output: torch.Size([1, 960, 10, 10])
+Extra Layer 1 output: torch.Size([1, 512, 5, 5])
+Extra Layer 2 output: torch.Size([1, 256, 3, 3])
+Loading checkpoint...
+Epoch 1/22:  31%|█████████████████▍                                       | 99/323 [02:18<05:15,  1.41s/it]Batch 100: Total Loss: 7.7689, Cls Loss: 5.6181, Loc Loss: 2.1508
+Epoch 1/22:  62%|██████████████████████████████████▌                     | 199/323 [04:43<02:19,  1.12s/it]Batch 200: Total Loss: 7.6993, Cls Loss: 5.5593, Loc Loss: 2.1400
+Epoch 1/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [06:57<00:38,  1.61s/it]Batch 300: Total Loss: 7.6300, Cls Loss: 5.5002, Loc Loss: 2.1298
+Epoch 1/22: 100%|████████████████████████████████████████████████████████| 323/323 [07:26<00:00,  1.38s/it]
+
+Epoch 1 Summary:
+Total Loss: 7.6217
+Classification Loss: 5.4908
+Localization Loss: 2.1309
+
+Epoch 2/22:  31%|█████████████████▍                                       | 99/323 [02:01<03:38,  1.03it/s]Batch 100: Total Loss: 7.3636, Cls Loss: 5.2626, Loc Loss: 2.1010
+Epoch 2/22:  62%|██████████████████████████████████▌                     | 199/323 [04:08<02:17,  1.11s/it]Batch 200: Total Loss: 7.3169, Cls Loss: 5.2224, Loc Loss: 2.0945
+Epoch 2/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [06:16<00:26,  1.10s/it]Batch 300: Total Loss: 7.2714, Cls Loss: 5.1785, Loc Loss: 2.0929
+Epoch 2/22: 100%|████████████████████████████████████████████████████████| 323/323 [06:50<00:00,  1.27s/it]
+
+Epoch 2 Summary:
+Total Loss: 7.2670
+Classification Loss: 5.1736
+Localization Loss: 2.0933
+
+Epoch 3/22:  31%|█████████████████▍                                       | 99/323 [02:06<05:09,  1.38s/it]Batch 100: Total Loss: 7.0643, Cls Loss: 5.0020, Loc Loss: 2.0623
+Epoch 3/22:  62%|██████████████████████████████████▌                     | 199/323 [04:03<02:10,  1.05s/it]Batch 200: Total Loss: 7.0169, Cls Loss: 4.9635, Loc Loss: 2.0534
+Epoch 3/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [06:05<00:28,  1.18s/it]Batch 300: Total Loss: 6.9705, Cls Loss: 4.9235, Loc Loss: 2.0470
+Epoch 3/22: 100%|████████████████████████████████████████████████████████| 323/323 [06:29<00:00,  1.21s/it]
+
+Epoch 3 Summary:
+Total Loss: 6.9607
+Classification Loss: 4.9167
+Localization Loss: 2.0440
+
+Epoch 4/22:  31%|█████████████████▍                                       | 99/323 [02:16<05:38,  1.51s/it]Batch 100: Total Loss: 6.8539, Cls Loss: 4.8067, Loc Loss: 2.0471
+Epoch 4/22:  62%|██████████████████████████████████▌                     | 199/323 [04:34<02:48,  1.36s/it]Batch 200: Total Loss: 6.7925, Cls Loss: 4.7623, Loc Loss: 2.0301
+Epoch 4/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [06:50<00:28,  1.18s/it]Batch 300: Total Loss: 6.7509, Cls Loss: 4.7278, Loc Loss: 2.0231
+Epoch 4/22: 100%|████████████████████████████████████████████████████████| 323/323 [07:21<00:00,  1.37s/it]
+
+Epoch 4 Summary:
+Total Loss: 6.7401
+Classification Loss: 4.7203
+Localization Loss: 2.0199
+
+Epoch 5/22:  31%|█████████████████▍                                       | 99/323 [02:25<05:46,  1.55s/it]Batch 100: Total Loss: 6.6854, Cls Loss: 4.6540, Loc Loss: 2.0314
+Epoch 5/22:  62%|██████████████████████████████████▌                     | 199/323 [04:44<03:07,  1.51s/it]Batch 200: Total Loss: 6.6337, Cls Loss: 4.6130, Loc Loss: 2.0207
+Epoch 5/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [07:11<00:26,  1.11s/it]Batch 300: Total Loss: 6.6011, Cls Loss: 4.5914, Loc Loss: 2.0096
+Epoch 5/22: 100%|████████████████████████████████████████████████████████| 323/323 [07:39<00:00,  1.42s/it]
+
+Epoch 5 Summary:
+Total Loss: 6.5963
+Classification Loss: 4.5861
+Localization Loss: 2.0102
+
+Epoch 6/22:  31%|█████████████████▍                                       | 99/323 [02:19<04:33,  1.22s/it]Batch 100: Total Loss: 6.4446, Cls Loss: 4.4702, Loc Loss: 1.9745
+Epoch 6/22:  62%|██████████████████████████████████▌                     | 199/323 [04:30<02:21,  1.14s/it]Batch 200: Total Loss: 6.4418, Cls Loss: 4.4651, Loc Loss: 1.9767
+Epoch 6/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [06:41<00:25,  1.07s/it]Batch 300: Total Loss: 6.4230, Cls Loss: 4.4517, Loc Loss: 1.9713
+Epoch 6/22: 100%|████████████████████████████████████████████████████████| 323/323 [07:13<00:00,  1.34s/it]
+
+Epoch 6 Summary:
+Total Loss: 6.4203
+Classification Loss: 4.4488
+Localization Loss: 1.9714
+
+Epoch 7/22:  31%|█████████████████▍                                       | 99/323 [02:00<04:12,  1.13s/it]Batch 100: Total Loss: 6.2920, Cls Loss: 4.3524, Loc Loss: 1.9396
+Epoch 7/22:  62%|██████████████████████████████████▌                     | 199/323 [03:55<02:12,  1.07s/it]Batch 200: Total Loss: 6.2855, Cls Loss: 4.3384, Loc Loss: 1.9471
+Epoch 7/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [06:01<00:30,  1.28s/it]Batch 300: Total Loss: 6.2802, Cls Loss: 4.3355, Loc Loss: 1.9447
+Epoch 7/22: 100%|████████████████████████████████████████████████████████| 323/323 [06:30<00:00,  1.21s/it]
+
+Epoch 7 Summary:
+Total Loss: 6.2795
+Classification Loss: 4.3341
+Localization Loss: 1.9454
+
+Epoch 8/22:  31%|█████████████████▍                                       | 99/323 [02:28<04:14,  1.14s/it]Batch 100: Total Loss: 6.2669, Cls Loss: 4.3116, Loc Loss: 1.9553
+Epoch 8/22:  62%|██████████████████████████████████▌                     | 199/323 [04:40<02:43,  1.32s/it]Batch 200: Total Loss: 6.2294, Cls Loss: 4.2912, Loc Loss: 1.9382
+Epoch 8/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [07:13<00:48,  2.01s/it]Batch 300: Total Loss: 6.2124, Cls Loss: 4.2737, Loc Loss: 1.9387
+Epoch 8/22: 100%|████████████████████████████████████████████████████████| 323/323 [07:51<00:00,  1.46s/it]
+
+Epoch 8 Summary:
+Total Loss: 6.2030
+Classification Loss: 4.2666
+Localization Loss: 1.9364
+
+Epoch 9/22:  31%|█████████████████▍                                       | 99/323 [02:51<04:02,  1.08s/it]Batch 100: Total Loss: 6.1453, Cls Loss: 4.2138, Loc Loss: 1.9315
+Epoch 9/22:  62%|██████████████████████████████████▌                     | 199/323 [05:10<02:47,  1.35s/it]Batch 200: Total Loss: 6.1351, Cls Loss: 4.2137, Loc Loss: 1.9214
+Epoch 9/22:  93%|███████████████████████████████████████████████████▊    | 299/323 [07:22<00:24,  1.04s/it]Batch 300: Total Loss: 6.1218, Cls Loss: 4.2109, Loc Loss: 1.9109
+Epoch 9/22: 100%|████████████████████████████████████████████████████████| 323/323 [07:47<00:00,  1.45s/it]
+
+Epoch 9 Summary:
+Total Loss: 6.1246
+Classification Loss: 4.2126
+Localization Loss: 1.9121
+
+Epoch 10/22:  31%|█████████████████▏                                      | 99/323 [02:13<05:00,  1.34s/it]Batch 100: Total Loss: 6.0357, Cls Loss: 4.1420, Loc Loss: 1.8938
+Epoch 10/22:  62%|█████████████████████████████████▉                     | 199/323 [04:06<02:15,  1.10s/it]Batch 200: Total Loss: 6.0170, Cls Loss: 4.1329, Loc Loss: 1.8841
+Epoch 10/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [06:14<00:30,  1.27s/it]Batch 300: Total Loss: 6.0168, Cls Loss: 4.1362, Loc Loss: 1.8805
+Epoch 10/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:49<00:00,  1.27s/it]
+
+Epoch 10 Summary:
+Total Loss: 6.0147
+Classification Loss: 4.1332
+Localization Loss: 1.8815
+
+Epoch 11/22:  31%|█████████████████▏                                      | 99/323 [02:30<04:32,  1.22s/it]Batch 100: Total Loss: 6.0370, Cls Loss: 4.1235, Loc Loss: 1.9135
+Epoch 11/22:  62%|█████████████████████████████████▉                     | 199/323 [04:40<02:05,  1.01s/it]Batch 200: Total Loss: 6.0074, Cls Loss: 4.1110, Loc Loss: 1.8964
+Epoch 11/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [06:46<00:25,  1.08s/it]Batch 300: Total Loss: 6.0029, Cls Loss: 4.1061, Loc Loss: 1.8969
+Epoch 11/22: 100%|███████████████████████████████████████████████████████| 323/323 [07:12<00:00,  1.34s/it]
+
+Epoch 11 Summary:
+Total Loss: 5.9995
+Classification Loss: 4.1029
+Localization Loss: 1.8966
+
+Epoch 12/22:  31%|█████████████████▏                                      | 99/323 [02:07<05:54,  1.58s/it]Batch 100: Total Loss: 5.9566, Cls Loss: 4.0835, Loc Loss: 1.8731
+Epoch 12/22:  62%|█████████████████████████████████▉                     | 199/323 [04:14<02:36,  1.26s/it]Batch 200: Total Loss: 5.9389, Cls Loss: 4.0625, Loc Loss: 1.8765
+Epoch 12/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [06:29<00:26,  1.10s/it]Batch 300: Total Loss: 5.9262, Cls Loss: 4.0575, Loc Loss: 1.8687
+Epoch 12/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:55<00:00,  1.29s/it]
+
+Epoch 12 Summary:
+Total Loss: 5.9245
+Classification Loss: 4.0560
+Localization Loss: 1.8685
+
+Epoch 13/22:  31%|█████████████████▏                                      | 99/323 [02:07<04:09,  1.12s/it]Batch 100: Total Loss: 5.8882, Cls Loss: 4.0204, Loc Loss: 1.8678
+Epoch 13/22:  62%|█████████████████████████████████▉                     | 199/323 [04:03<02:00,  1.03it/s]Batch 200: Total Loss: 5.8777, Cls Loss: 4.0247, Loc Loss: 1.8530
+Epoch 13/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:58<00:25,  1.06s/it]Batch 300: Total Loss: 5.8729, Cls Loss: 4.0165, Loc Loss: 1.8563
+Epoch 13/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:23<00:00,  1.19s/it]
+
+Epoch 13 Summary:
+Total Loss: 5.8673
+Classification Loss: 4.0116
+Localization Loss: 1.8558
+
+Epoch 14/22:  31%|█████████████████▏                                      | 99/323 [01:56<04:39,  1.25s/it]Batch 100: Total Loss: 5.8416, Cls Loss: 3.9854, Loc Loss: 1.8563
+Epoch 14/22:  62%|█████████████████████████████████▉                     | 199/323 [03:50<02:17,  1.11s/it]Batch 200: Total Loss: 5.8553, Cls Loss: 3.9889, Loc Loss: 1.8664
+Epoch 14/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:41<00:24,  1.03s/it]Batch 300: Total Loss: 5.8334, Cls Loss: 3.9761, Loc Loss: 1.8573
+Epoch 14/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:13<00:00,  1.16s/it]
+
+Epoch 14 Summary:
+Total Loss: 5.8253
+Classification Loss: 3.9722
+Localization Loss: 1.8530
+
+Epoch 15/22:  31%|█████████████████▏                                      | 99/323 [01:57<03:38,  1.02it/s]Batch 100: Total Loss: 5.8372, Cls Loss: 3.9960, Loc Loss: 1.8412
+Epoch 15/22:  62%|█████████████████████████████████▉                     | 199/323 [03:48<02:20,  1.13s/it]Batch 200: Total Loss: 5.8020, Cls Loss: 3.9620, Loc Loss: 1.8400
+Epoch 15/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:39<00:24,  1.03s/it]Batch 300: Total Loss: 5.8005, Cls Loss: 3.9594, Loc Loss: 1.8411
+Epoch 15/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:05<00:00,  1.13s/it]
+
+Epoch 15 Summary:
+Total Loss: 5.8010
+Classification Loss: 3.9617
+Localization Loss: 1.8393
+
+Epoch 16/22:  31%|█████████████████▏                                      | 99/323 [01:57<05:13,  1.40s/it]Batch 100: Total Loss: 5.8077, Cls Loss: 3.9691, Loc Loss: 1.8386
+Epoch 16/22:  62%|█████████████████████████████████▉                     | 199/323 [03:53<02:42,  1.31s/it]Batch 200: Total Loss: 5.8035, Cls Loss: 3.9701, Loc Loss: 1.8333
+Epoch 16/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:46<00:30,  1.26s/it]Batch 300: Total Loss: 5.7918, Cls Loss: 3.9506, Loc Loss: 1.8412
+Epoch 16/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:19<00:00,  1.17s/it]
+
+Epoch 16 Summary:
+Total Loss: 5.7765
+Classification Loss: 3.9422
+Localization Loss: 1.8342
+
+Epoch 17/22:  31%|█████████████████▏                                      | 99/323 [02:17<04:30,  1.21s/it]Batch 100: Total Loss: 5.6727, Cls Loss: 3.8821, Loc Loss: 1.7906
+Epoch 17/22:  62%|█████████████████████████████████▉                     | 199/323 [04:10<02:03,  1.00it/s]Batch 200: Total Loss: 5.7153, Cls Loss: 3.9129, Loc Loss: 1.8024
+Epoch 17/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [06:05<00:26,  1.10s/it]Batch 300: Total Loss: 5.7328, Cls Loss: 3.9223, Loc Loss: 1.8105
+Epoch 17/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:31<00:00,  1.21s/it]
+
+Epoch 17 Summary:
+Total Loss: 5.7357
+Classification Loss: 3.9217
+Localization Loss: 1.8139
+
+Epoch 18/22:  31%|█████████████████▏                                      | 99/323 [01:58<04:27,  1.19s/it]Batch 100: Total Loss: 5.7473, Cls Loss: 3.9214, Loc Loss: 1.8259
+Epoch 18/22:  62%|█████████████████████████████████▉                     | 199/323 [04:01<03:37,  1.75s/it]Batch 200: Total Loss: 5.7474, Cls Loss: 3.9249, Loc Loss: 1.8225
+Epoch 18/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:57<00:23,  1.04it/s]Batch 300: Total Loss: 5.7244, Cls Loss: 3.9107, Loc Loss: 1.8137
+Epoch 18/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:22<00:00,  1.18s/it]
+
+Epoch 18 Summary:
+Total Loss: 5.7238
+Classification Loss: 3.9089
+Localization Loss: 1.8149
+
+Epoch 19/22:  31%|█████████████████▏                                      | 99/323 [02:03<03:57,  1.06s/it]Batch 100: Total Loss: 5.6683, Cls Loss: 3.8818, Loc Loss: 1.7865
+Epoch 19/22:  62%|█████████████████████████████████▉                     | 199/323 [03:56<02:51,  1.39s/it]Batch 200: Total Loss: 5.6784, Cls Loss: 3.8845, Loc Loss: 1.7939
+Epoch 19/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:48<00:26,  1.11s/it]Batch 300: Total Loss: 5.6806, Cls Loss: 3.8832, Loc Loss: 1.7974
+Epoch 19/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:13<00:00,  1.16s/it]
+
+Epoch 19 Summary:
+Total Loss: 5.6838
+Classification Loss: 3.8839
+Localization Loss: 1.7999
+
+Epoch 20/22:  31%|█████████████████▏                                      | 99/323 [02:03<03:39,  1.02it/s]Batch 100: Total Loss: 5.6821, Cls Loss: 3.8720, Loc Loss: 1.8101
+Epoch 20/22:  62%|█████████████████████████████████▉                     | 199/323 [03:56<02:06,  1.02s/it]Batch 200: Total Loss: 5.6948, Cls Loss: 3.8780, Loc Loss: 1.8168
+Epoch 20/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:51<00:26,  1.10s/it]Batch 300: Total Loss: 5.6667, Cls Loss: 3.8618, Loc Loss: 1.8049
+Epoch 20/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:19<00:00,  1.18s/it]
+
+Epoch 20 Summary:
+Total Loss: 5.6549
+Classification Loss: 3.8556
+Localization Loss: 1.7993
+
+Epoch 21/22:  31%|█████████████████▏                                      | 99/323 [01:57<04:42,  1.26s/it]Batch 100: Total Loss: 5.6285, Cls Loss: 3.8327, Loc Loss: 1.7958
+Epoch 21/22:  62%|█████████████████████████████████▉                     | 199/323 [03:50<03:02,  1.47s/it]Batch 200: Total Loss: 5.6393, Cls Loss: 3.8478, Loc Loss: 1.7915
+Epoch 21/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:41<00:29,  1.25s/it]Batch 300: Total Loss: 5.6361, Cls Loss: 3.8434, Loc Loss: 1.7927
+Epoch 21/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:06<00:00,  1.14s/it]
+
+Epoch 21 Summary:
+Total Loss: 5.6368
+Classification Loss: 3.8429
+Localization Loss: 1.7939
+
+Epoch 22/22:  31%|█████████████████▏                                      | 99/323 [01:56<04:19,  1.16s/it]Batch 100: Total Loss: 5.6333, Cls Loss: 3.8535, Loc Loss: 1.7798
+Epoch 22/22:  62%|█████████████████████████████████▉                     | 199/323 [03:49<02:15,  1.10s/it]Batch 200: Total Loss: 5.6215, Cls Loss: 3.8401, Loc Loss: 1.7814
+Epoch 22/22:  93%|██████████████████████████████████████████████████▉    | 299/323 [05:41<00:26,  1.11s/it]Batch 300: Total Loss: 5.6198, Cls Loss: 3.8339, Loc Loss: 1.7859
+Epoch 22/22: 100%|███████████████████████████████████████████████████████| 323/323 [06:06<00:00,  1.13s/it]
+
+Epoch 22 Summary:
+Total Loss: 5.6234
+Classification Loss: 3.8364
+Localization Loss: 1.7871
+
+Training complete!
+Loaded 497 test images
+Evaluating: 100%|████████████████████████████████████████████████████████| 497/497 [01:41<00:00,  4.90it/s]
+
+Evaluation Metrics:
+--------------------------------------------------
+Class                          | AP        
+--------------------------------------------------
+Cassava Bacterial Blight       | 0.0000
+Cassava Brown Leaf Spot        | 0.2908
+Cassava Healthy                | 0.5074
+Cassava Mosaic                 | 0.5695
+Cassava Root Rot               | 0.2536
+Corn Brown Spots               | 0.4064
+Corn Charcoal                  | 0.0000
+Corn Chlorotic Leaf Spot       | 0.5667
+Corn Gray leaf spot            | 1.0000
+Corn Healthy                   | 0.0179
+Corn Insects Damages           | 1.0000
+Corn Mildew                    | 0.0000
+Corn Purple Discoloration      | nan
+Corn Smut                      | nan
+Corn Streak                    | 0.5110
+Corn Stripe                    | 0.6541
+Corn Violet Decoloration       | 0.0000
+Corn Yellow Spots              | nan
+Corn Yellowing                 | 0.4298
+Corn leaf blight               | 0.6325
+Corn rust leaf                 | 0.7088
+Tomato Brown Spots             | 0.4427
+Tomato bacterial wilt          | nan
+Tomato blight leaf             | 0.2687
+Tomato healthy                 | 0.0016
+Tomato leaf mosaic virus       | 0.0000
+Tomato leaf yellow virus       | 0.1465
+background                     | nan
+--------------------------------------------------
+
+Mean Average Precision (mAP): 0.3656
+Precision: 0.0407
+Recall: 0.6819
+F1 Score: 0.0768
+
+Loading checkpoint...
+Loaded 497 test images
+Inference complete! Check the "samples" directory for results.
